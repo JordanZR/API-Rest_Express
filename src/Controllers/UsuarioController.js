@@ -23,4 +23,27 @@ usuarioCtrl.postUsuarios = (req, res)=>{
     })
 }
 
+usuarioCtrl.updateUsuarios = (req,res)=>{
+    query = "UPDATE usuario SET name = '" + req.body.name + "',surname = '" + req.body.surname + "' WHERE id = " + req.body.id
+    connection.query(query, function (err, result) {
+        if (err) throw err;
+        query = "SELECT * from usuario"
+        connection.query(query, function (err, result) {
+            if (err) throw err;
+            res.json(result)
+        })
+    })
+}
+
+usuarioCtrl.deleteUsuarios = (req,res)=>{
+    query = "DELETE FROM usuario WHERE id = " + req.body.id
+    connection.query(query, function (err, result) {
+        if (err) throw err;
+        query = "SELECT * from usuario"
+        connection.query(query, function (err, result) {
+            if (err) throw err;
+            res.json(result)
+        })
+    })
+}
 module.exports = usuarioCtrl
