@@ -6,7 +6,7 @@ var query
 usuarioCtrl.getUsuarios = (req, res)=>{
     query = "SELECT * from usuario"
     connection.query(query, function (err, result) {
-        if (err) throw err;
+        if (err) console.log(err)
         res.json(result)
     })
 }
@@ -14,7 +14,7 @@ usuarioCtrl.getUsuarios = (req, res)=>{
 usuarioCtrl.postUsuarios = (req, res)=>{
     query = "INSERT INTO usuario(name, surname) VALUES('" + req.body.name +  "','" + req.body.surname + "')"
     connection.query(query, function (err, result) {
-        if (err) throw err;
+        if (err) console.log(err)
         query = "SELECT * from usuario"
         connection.query(query, function (err, result) {
             if (err) throw err;
@@ -26,7 +26,7 @@ usuarioCtrl.postUsuarios = (req, res)=>{
 usuarioCtrl.updateUsuarios = (req,res)=>{
     query = "UPDATE usuario SET name = '" + req.body.name + "',surname = '" + req.body.surname + "' WHERE id = " + req.body.id
     connection.query(query, function (err, result) {
-        if (err) throw err;
+        if (err) console.log(err)
         query = "SELECT * from usuario"
         connection.query(query, function (err, result) {
             if (err) throw err;
@@ -38,7 +38,7 @@ usuarioCtrl.updateUsuarios = (req,res)=>{
 usuarioCtrl.deleteUsuarios = (req,res)=>{
     query = "DELETE FROM usuario WHERE id = " + req.body.id
     connection.query(query, function (err, result) {
-        if (err) throw err;
+        if (err) console.log(err);
         query = "SELECT * from usuario"
         connection.query(query, function (err, result) {
             if (err) throw err;
